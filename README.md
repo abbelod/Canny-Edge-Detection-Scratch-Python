@@ -1,5 +1,7 @@
 # Canny Edge Detection in Python
 
+![Sample Output](output.png)
+
 ## Overview
 
 This project implements the Canny Edge Detection algorithm in Python. The Canny method is a multi-stage edge detection technique designed to extract meaningful structural edges from images while minimizing noise and false detections. It is widely used in computer vision because it provides good detection, good localization, and a low error rate.

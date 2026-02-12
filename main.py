@@ -106,18 +106,10 @@ def link_edges(strong_edges, weak_edges):
 
 def canny(img, kernel_size = 5, sigma=1.4, high = 0.5, low=0.02):
     gaussian = gaussian_kernel(kernel_size, sigma)
-    print("debug 109")
     smoothed_image = conv(img, gaussian)
-    print("debug 111")
-
     G, theta = gradient(smoothed_image)
-    print("debug 114")
-
     nms_img = non_maximum_suppression(G, theta)
-    print("debug 117")
-
     strong_edges, weak_edges = double_thresholding(nms_img, high, low)
-    print("debug 120")
 
     return link_edges(strong_edges, weak_edges)
 
@@ -148,16 +140,14 @@ fig, axs = plt.subplots(1, 3)
 
 # Step 1: Canny Edge Detection
 edges = canny(img, kernel_size=5, sigma=1.4, high=5, low=0.2)
-print("debug 143")
 axs[0].set_title('Original Image')
 axs[0].imshow(img)
-axs[1].set_title('My Implementation')
+axs[1].set_title('From Scratch')
 axs[1].imshow(edges)
 
 
 # Getting edges using OpenCV
 cv2edges = cv2.Canny(img2, 50, 150)
-print("debug 1")
 axs[2].set_title('OpenCV')
 axs[2].imshow(cv2edges)
 

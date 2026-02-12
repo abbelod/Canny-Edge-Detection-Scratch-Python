@@ -154,15 +154,6 @@ axs[0].imshow(img)
 axs[1].set_title('My Implementation')
 axs[1].imshow(edges)
 
-# # Step 2: Mask for Region of Interest (ROI)
-# H, W = img.shape
-# mask = np.zeros((H, W))
-# for i in range(H):
-#     for j in range(W):
-#         if i > (H / W) * j and i > -(H / W) * j + H:
-#             mask[i, j] = 1
-# roi = edges * mask
-# axs[1, 1].imshow(roi)
 
 # Getting edges using OpenCV
 cv2edges = cv2.Canny(img2, 50, 150)
@@ -170,42 +161,5 @@ print("debug 1")
 axs[2].set_title('OpenCV')
 axs[2].imshow(cv2edges)
 
-
-### Line Detection using Hough Transform
-
-# # Step 3: Hough Transform
-# acc, rhos, thetas = hough_transform(edges)
-# print("debug 2")
-# plt.imshow(acc, cmap='hot', aspect='auto')
-# plt.xlabel('Theta index')
-# plt.ylabel('Rho index')
-# plt.title('Hough Accumulator')
-# plt.colorbar()
-
-
-# # Example: extract lines with threshold
-# threshold = 150  # min votes to consider a line
-# H, W = img.shape
-# diag_len = int(np.ceil(np.sqrt(H**2 + W**2)))
-
-# for r_idx, theta_idx in np.argwhere(acc > threshold):
-#     rho = rhos[r_idx]
-#     theta = thetas[theta_idx]
-
-#     # Convert rho, theta to line endpoints
-#     a = np.cos(theta)
-#     b = np.sin(theta)
-#     x0 = a * rho
-#     y0 = b * rho
-#     x1 = int(x0 + 1000*(-b))
-#     y1 = int(y0 + 1000*(a))
-#     x2 = int(x0 - 1000*(-b))
-#     y2 = int(y0 - 1000*(a))
-
-#     cv2.line(img, (x1,y1), (x2,y2), (255,0,0), 2)  # draw line
-
-# plt.imshow(img, cmap='gray')
-# plt.title('Detected Lines')
-# plt.axis('off')
 
 plt.show()
